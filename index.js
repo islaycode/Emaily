@@ -4,7 +4,9 @@ const express = require('express')
 const app = express();
 
 app.get('/',(req,res)=>{
-    res.send({ hi: "there" });
+    res.send({ hi: "there",
+    bye: "buddy", 
+});
 });
 //Dynamic PORT binding for heroku
 const PORT = process.env.PORT || 5000;

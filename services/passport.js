@@ -15,10 +15,13 @@ passport.use(new GoogleStrategy({
     .then((existingUser)=>{
         if(existingUser){
             // we already have a record with the given id
+            done(null,existingUser)
         }
         else{
-            new User ({ googleID:profile.id }).save(); // This will take model instance and save it to database
+            new User ({ googleID:profile.id }).
+            save() // This will take model instance and save it to database
+            .then(user => done(null,user));
         }
-    })
+    });
 }
 )); // Tells passport to use new GoogleStrategy to handle users it take two arguments 

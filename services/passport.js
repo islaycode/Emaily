@@ -13,7 +13,7 @@ passport.deserializeUser((id,done)=>{ // we call done after successfully turing 
     User.findById(id)
     .then(user =>{
         done(null,user);
-    });
+    }).catch(err => console.log('Something happens' + err))
 });
 passport.use(new GoogleStrategy({
     clientID: keys.googleClientID,
@@ -30,8 +30,8 @@ passport.use(new GoogleStrategy({
         else{
             new User ({ googleID:profile.id }).
             save() // This will take model instance and save it to database
-            .then(user => done(null,user));
+            .then(user => done(null,user)).catch(err=>{console.log("pakad liya"+err)})
         }
-    });
+    }).catch(err => { console.log("HOJA BHAI" + err)})
 }
 )); // Tells passport to use new GoogleStrategy to handle users it take two arguments 

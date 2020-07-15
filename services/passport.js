@@ -5,10 +5,16 @@ const mongoose = require('mongoose');
 
 const User = mongoose.model('users'); //model class, This will pull out user model
 
-passport.serializeUser((user,done)=>{
+passport.serializeUser((user,done)=>{ //Here user is user model instance it was a mongoose model
     done(null,user.id);
 });
 
+passport.deserializeUser((id,done)=>{ // we call done after successfully turing id into user,We will turn this id into user
+    User.findById(id)
+    .then(user =>{
+        done(null,user);
+    });
+});
 passport.use(new GoogleStrategy({
     clientID: keys.googleClientID,
     clientSecret: keys.googleClientSecret,

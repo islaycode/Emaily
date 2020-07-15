@@ -18,7 +18,8 @@ passport.deserializeUser((id,done)=>{ // we call done after successfully turing 
 passport.use(new GoogleStrategy({
     clientID: keys.googleClientID,
     clientSecret: keys.googleClientSecret,
-    callbackURL: '/auth/google/callback'
+    callbackURL: '/auth/google/callback',
+    proxy:true
 },
 (accessToken,refreshToken,profile,done) =>{
     User.findOne({googleId: profile.id})
@@ -26,7 +27,7 @@ passport.use(new GoogleStrategy({
         if(existingUser){
             // we already have a record with the given id
             done(null,existingUser);
-        }
+        } 
         else{
             new User ({ googleID:profile.id }).
             save() // This will take model instance and save it to database

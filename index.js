@@ -1,10 +1,22 @@
 const express = require('express'); //Importing express
 const mongoose = require('mongoose');
+const cookieSession = require('cookie-session'); //Gives access to cookie
+const passport = require('passport'); // It will tell passport to make use of them.
 require('./modals/User'); // Execute or requiring the models where is actually defined model class
 require('./services/passport') // We're running this file to pull models
 const keys =  require('./config/keys');
 mongoose.connect(keys.mongoURI);
+
 const app = express();//Creating our app which uses express features
+
+app.use(
+    cookieSession({
+        maxAge: 30 * 24 * 60 * 1000,
+        keys:[keys.cookieKey]
+    })
+);
+app.use(passport.initialize()); //Initializing cookie
+app.use(passport.session()); // Starting session
 
 require('./routes/authRoutes')(app);
 

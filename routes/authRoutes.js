@@ -7,5 +7,14 @@ passport.authenticate('google',{
     scope: ['profile','email']
 }));
 
-app.get('/auth/google/callback',passport.authenticate('google')); // TO handle request of callback when user comes back,Transfer handle to googlestrategy
+app.get('/auth/google/callback',passport.authenticate('google')); // To handle request of callback when user comes back,Transfer handle to googlestrategy
+
+app.get('/api/logout',(req,res)=>{ //log outs user
+    req.logout();
+    res.send(req.user);
+});
+
+app.get('/api/current_user',(req,res)=>{ //displays current user in json format
+    res.send(req.user);
+})
 };

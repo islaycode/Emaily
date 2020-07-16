@@ -22,7 +22,7 @@ passport.use(new GoogleStrategy({
     proxy:true
 },
 (accessToken,refreshToken,profile,done) =>{
-    User.findOne({googleId: profile.id})
+    User.findOne({googleID: profile.id})
     .then((existingUser)=>{
         if(existingUser){
             // we already have a record with the given id

@@ -2,6 +2,9 @@ const express = require('express'); //Importing express
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session'); //Gives access to cookie
 const passport = require('passport'); // It will tell passport to make use of them.
+require('./modals/User'); // Execute or requiring the models where is actually defined model class
+require('./services/passport') // We're running this file to pull models
+require('./modals/Survey');
 const bodyParser = require('body-parser');
 const keys =  require('./config/keys');
  

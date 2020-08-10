@@ -17,6 +17,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/helpers": "^7.2.3",
+    "@sendgrid/mail": "^7.2.3",
     "body-parser": "^1.19.0",
     "concurrently": "^5.2.0",
     "cookie-session": "^1.4.0",
@@ -25,6 +27,7 @@
     "nodemon": "^2.0.4",
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
+    "sendgrid": "^5.2.3",
     "stripe": "^8.77.0"
   }
 }
